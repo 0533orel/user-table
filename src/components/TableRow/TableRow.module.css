@@ -1,0 +1,72 @@
+.cell {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e9ecef;
+  color: #333;
+  text-align: center;  
+  vertical-align: middle;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.input:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+
+.readOnlyRow {
+  background-color: #fff;
+}
+
+.editingRow {
+  background-color: #fff9db;
+}
+
+.actionsContainer {
+  display: flex;
+  gap: 8px; 
+  justify-content: center;
+}
+
+.editBtn {
+  color: #333;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.editBtn:hover {
+}
+
+.saveBtn {
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.deleteBtn {
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.deleteBtn:hover {
+}

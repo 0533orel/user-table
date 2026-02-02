@@ -1,0 +1,72 @@
+.wrapper {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin: 20px;
+  position: relative;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  color: #495057;
+  padding: 16px;
+  text-align: right;
+  border-bottom: 2px solid #e9ecef;
+  font-weight: 600;
+}
+
+.addColumnHeader {
+  width: 50px;
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+.circleBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e7f5ff;
+  color: #007bff;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.circleBtn:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.1);
+}
+
+.addRowContainer {
+  padding: 15px;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.addRecordBtn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.addRecordBtn:hover {
+  background-color: #218838;
+}

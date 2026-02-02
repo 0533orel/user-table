@@ -1,0 +1,27 @@
+.App {
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    direction: rtl;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.header {
+    text-align: right;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #1a1a1a;
+}
+

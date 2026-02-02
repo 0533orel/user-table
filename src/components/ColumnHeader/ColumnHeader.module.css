@@ -1,0 +1,76 @@
+.headerCell {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e9ecef;
+  border-left: 1px solid #e9ecef; 
+  padding: 10px;
+  min-width: 150px;
+  vertical-align: middle; 
+  text-align: center;
+}
+
+
+.displayContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-weight: 600;
+  color: #495057;
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0.3; 
+  transition: opacity 0.2s;
+}
+
+
+.headerCell:hover .actions {
+  opacity: 1;
+}
+
+.editContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.input {
+  width: 90%;;
+  padding: 4px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.miniActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.iconBtn:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.danger:hover {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
