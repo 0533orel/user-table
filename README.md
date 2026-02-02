@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# Dynamic User Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, dynamic data management table built with React and TypeScript. This application demonstrates advanced state management patterns, strict typing, and rendering optimizations suitable for modern web applications.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The goal of this project was to build a robust system allowing users to manage dynamic datasets. Unlike standard static tables, this application allows for the runtime modification of the data structure itself (adding/removing columns) while maintaining data integrity and high performance.
 
-## React Compiler
+## Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Functional Capabilities
+* **Dynamic Structure:** Users can add, rename, and remove columns dynamically.
+* **Full CRUD Operations:** Complete Create, Read, Update, and Delete capabilities for both data rows and table columns.
+* **Inline Editing:** Seamless transition between "Read Mode" and "Edit Mode" for efficient data entry.
+* **System Protection:** Core columns (Name, Phone, ID) are flagged as "System Columns" and are protected from deletion or renaming to ensure data consistency.
+* **Data Validation:**
+    * Numeric-only enforcement for specific field types (Phone, ID).
+    * Character limit constraints per column.
+    * Duplicate column name prevention.
 
-## Expanding the ESLint configuration
+### Technical Highlights
+* **Custom Hooks:** All business logic, state manipulation, and validation rules are encapsulated within a `useTableManager` hook, adhering to the Separation of Concerns principle.
+* **Performance Optimization:**
+    * **React.memo:** Implemented on the `TableRow` component to prevent unnecessary re-renders of existing rows when the table structure changes.
+    * **useCallback:** utilized for all event handlers to maintain referential equality.
+    * **useMemo:** Implemented for expensive calculations (e.g., real-time statistics).
+* **Scoped Styling:** Uses CSS Modules to ensure style encapsulation and prevent class name collisions.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Core:** React 18+ (Functional Components)
+* **Language:** TypeScript
+* **Styling:** CSS Modules
+* **Build Tool:** Vite / Create React App
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+src/
+├── components/
+│   ├── UserTable/       # Main container and layout
+│   ├── TableRow/        # Memoized row component
+│   └── ColumnHeader/    # Header component with inline edit actions
+├── hooks/
+│   └── useTableManager.ts  # State logic and validation layer
+├── types.ts             # Global TypeScript interfaces
+├── App.tsx              # Application entry point
+└── index.css            # Global styles and resets
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation and Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **Clone the repository**
+    git clone https://github.com/your-username/your-repo-name.git
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Navigate to the project directory**
+    cd your-repo-name
+
+3.  **Install dependencies**
+    npm install
+
+4.  **Start the development server**
+    npm start
+    # or if using Vite:
+    npm run dev
+
+## Architecture Decisions
+
+### Why use a Custom Hook?
+The logic for managing a dynamic 2D grid (rows and columns) involves complex state updates. Extracting this to `useTableManager` keeps the UI components clean and purely presentational.
+
+### Why React.memo?
+In a table with potentially hundreds of rows, adding a single column shouldn't force every single cell to re-render. `React.memo` ensures that only rows with actual data changes are updated in the DOM.
+
+### System Columns Implementation
+To mimic real-world CRM requirements, the application implements a `isSystem` boolean flag in the Column interface. This acts as a guard clause in the delete/edit logic, preventing accidental structural damage.
