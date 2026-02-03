@@ -4,4 +4,5 @@ export interface ColumnTypes {
     type: 'text' | 'number'
     maxLength: number;
     isSystem: boolean;
+    required?: boolean;
 }

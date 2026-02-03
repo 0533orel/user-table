@@ -1,0 +1,24 @@
+.addColumnHeader {
+  width: 50px;
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+.circleBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e7f5ff;
+  color: #007bff;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.circleBtn:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.1);
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTableManager } from "../../hooks/useTableManager";
-import { TableRow } from "../TableRow/TableRow";
-import { ColumnHeader } from "../ColumnHeader/ColumnHeader";
+import { TableHead } from "../TableHead/TableHead";
+import { TableBody } from "../TableBody/TableBody";
 import styles from "./UserTable.module.css";
 
 export const UserTable: React.FC = () => {
@@ -18,48 +18,25 @@ export const UserTable: React.FC = () => {
     deleteColumn,
   } = useTableManager();
 
-  const handleAddColumn = () => {
-    const title = prompt("הכנס שם לעמודה חדשה");
-    if (title) addColumn(title);
-  };
 
   return (
     <div className={styles.wrapper}>
       <table className={styles.table}>
-        <thead>
-          <tr>
-            {columns.map((col) => (
-              <ColumnHeader
-                key={col.id}
-                column={col}
-                onRename={updateColumnTitle}
-                onDelete={deleteColumn}
-              />
-            ))}
-            <th className={styles.addColumnHeader}>
-              <button
-                onClick={handleAddColumn}
-                className={styles.circleBtn}
-                title="הוסף עמודה"
-              >
-                +
-              </button>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              row={row}
-              columns={columns}
-              onUpdate={updateCell}
-              onSave={saveRow}
-              onEdit={editRow}
-              onDelete={deleteRow}
-            />
-          ))}
-        </tbody>
+        <TableHead
+        columns={columns}
+        onRename={updateColumnTitle}
+        onDelete={deleteColumn}
+        onAddColumn={addColumn}
+        />
+
+        <TableBody
+        rows={rows}
+        columns={columns}
+        onUpdate={updateCell}
+        onSave={saveRow}
+        onEdit={editRow}
+        onDelete={deleteRow}
+        />
       </table>
       <div className={styles.addRowContainer}>
         <button onClick={addRow} className={styles.addRecordBtn}>
