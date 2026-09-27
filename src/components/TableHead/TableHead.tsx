@@ -2,7 +2,7 @@ import React from 'react';
 import { ColumnHeader } from '../ColumnHeader/ColumnHeader';
 import styles from './TableHead.module.css'; 
 import type { ColumnTypes } from '../../types/ColumnTypes';
-import { useDialog } from '../../context/DialogContext/DialogContext';
+import { useDialog } from '../../context/DialogContext/useDialog';
 
 interface TableHeadProps {
   columns: ColumnTypes[];
@@ -27,7 +27,7 @@ export const TableHead: React.FC<TableHeadProps> = ({ columns, onRename, onDelet
       <tr>
         {columns.map((col) => (
           <ColumnHeader
-            key={col.id}
+            key={col.id + ':' + col.title}
             column={col}
             onRename={onRename}
             onDelete={onDelete}

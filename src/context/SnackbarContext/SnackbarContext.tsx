@@ -1,13 +1,10 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import { SnackbarContext } from "./context";
+import React, { useState, useCallback } from "react";
 import type {
-  SnackbarContextType,
   SnackbarType,
 } from "../../types/SnackbarContextType";
 import styles from "./Snackbar.module.css";
 
-const SnackbarContext = createContext<SnackbarContextType | undefined>(
-  undefined,
-);
 
 export const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -39,11 +36,3 @@ export const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({
     </SnackbarContext.Provider>
     );
 };
-
-export const useSnackbar = () => {
-    const context = useContext(SnackbarContext)
-    if(!context){
-        throw new Error('useSnackbar must be used within a SnackbarProvider');
-    }
-    return context
-}
