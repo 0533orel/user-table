@@ -27,7 +27,7 @@ export const TableHead: React.FC<TableHeadProps> = ({ columns, onRename, onDelet
       <tr>
         {columns.map((col) => (
           <ColumnHeader
-            key={col.id}
+            key={col.id + ':' + col.title}
             column={col}
             onRename={onRename}
             onDelete={onDelete}

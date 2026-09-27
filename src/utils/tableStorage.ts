@@ -51,7 +51,7 @@ export function readSnapshot(): { snapshot: Snapshot; error: string | null } {
   const empty: Snapshot = { version: 1, columns: DEFAULT_COLUMNS, rows: [] };
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return { snapshot: raw ? parseSnapshot(raw) : empty, error: null };
+    return { snapshot: raw !== null ? parseSnapshot(raw) : empty, error: null };
   } catch {
     return { snapshot: empty, error: 'לא ניתן לקרוא את השמירה המקומית. המקור לא נדרס; אפשר לייבא גיבוי תקין.' };
   }

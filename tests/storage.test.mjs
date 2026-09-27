@@ -35,6 +35,12 @@ test('corrupt storage is reported without overwriting it', () => {
   assert.ok(result.error);
   assert.equal(writes, 0);
 });
+test('empty-string storage is corrupt, while a missing key starts an empty table', () => {
+  globalThis.localStorage = { getItem: () => '' };
+  assert.ok(readSnapshot().error);
+  globalThis.localStorage = { getItem: () => null };
+  assert.equal(readSnapshot().error, null);
+});
 test('saved rows require required values; drafts may be incomplete', () => {
   const value = sample(); delete value.rows[0].data.name;
   assert.throws(() => parseSnapshot(JSON.stringify(value)));

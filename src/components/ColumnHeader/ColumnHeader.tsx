@@ -60,7 +60,7 @@ export const ColumnHeader: React.FC<DynamicColumns> = ({
 
           <div className={styles.actions}>
             <button
-              onClick={() => setIsEditing(true)}
+              onClick={() => { setTempTitle(column.title); setIsEditing(true); }}
               className={styles.iconBtn}
               title="שנה שם"
             >
