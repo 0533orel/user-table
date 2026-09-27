@@ -2,7 +2,7 @@ import React from 'react';
 import { ColumnHeader } from '../ColumnHeader/ColumnHeader';
 import styles from './TableHead.module.css'; 
 import type { ColumnTypes } from '../../types/ColumnTypes';
-import { useDialog } from '../../context/DialogContext/DialogContext';
+import { useDialog } from '../../context/DialogContext/useDialog';
 
 interface TableHeadProps {
   columns: ColumnTypes[];

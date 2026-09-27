@@ -6,6 +6,7 @@ import styles from "./UserTable.module.css";
 
 export const UserTable: React.FC = () => {
   const {
+    exportTable, importTable, storageError,
     columns,
     rows,
     addRow,
@@ -21,6 +22,12 @@ export const UserTable: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
+      <p>הנתונים נשמרים בדפדפן זה בלבד. מומלץ לייצא גיבוי; אין סנכרון בין מכשירים.</p>
+      {storageError && <p role="alert">{storageError}</p>}
+      <button onClick={exportTable}>ייצוא גיבוי JSON</button>
+      <label> ייבוא גיבוי JSON <input type="file" accept="application/json,.json" onChange={e => {
+        const file = e.target.files?.[0]; if (file) void importTable(file); e.target.value = '';
+      }} /></label>
       <table className={styles.table}>
         <TableHead
         columns={columns}

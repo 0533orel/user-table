@@ -4,7 +4,6 @@ import type { DynamicRows } from "../../types/DynamicRows";
 
 export const TableRow = React.memo(
   ({ row, columns, onUpdate, onSave, onEdit, onDelete }: DynamicRows) => {
-    console.log(`Rendering Row: ${row.id}`);
 
     return (
       <tr className={row.isSaved ? styles.readOnlyRow : styles.editingRow}>

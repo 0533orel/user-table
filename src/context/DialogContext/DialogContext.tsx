@@ -1,16 +1,14 @@
+import { DialogContext } from "./context";
 import React, {
-  createContext,
-  useContext,
   useState,
   useRef,
   useCallback,
 } from "react";
 import styles from "./Dialog.module.css";
-import type { DialogContextType } from "../../types/DialogContextType";
 
 
 
-const DialogContext = createContext<DialogContextType | undefined>(undefined);
+
 
 export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -20,14 +18,14 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({
   const [type, setType] = useState<"confirm" | "prompt">("confirm"); 
   const [inputValue, setInputValue] = useState(""); 
 
-  const resolveRef = useRef<(value: any) => void>(() => {});
+  const resolveRef = useRef<(value: boolean | string | null) => void>(() => {});
 
   const showConfirm = useCallback((msg: string): Promise<boolean> => {
     setMessage(msg);
     setType("confirm");
     setIsOpen(true);
     return new Promise((resolve) => {
-      resolveRef.current = resolve;
+      resolveRef.current = value => resolve(value === true);
     });
   }, []);
 
@@ -37,7 +35,7 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({
     setInputValue(""); 
     setIsOpen(true);
     return new Promise((resolve) => {
-      resolveRef.current = resolve;
+      resolveRef.current = value => resolve(typeof value === 'string' ? value : null);
     });
   }, []);
 
@@ -93,12 +91,4 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({
       )}
     </DialogContext.Provider>
   );
-};
-
-export const useDialog = () => {
-  const context = useContext(DialogContext);
-  if (!context) {
-    throw new Error("useDialog must be used within a DialogProvider");
-  }
-  return context;
 };
